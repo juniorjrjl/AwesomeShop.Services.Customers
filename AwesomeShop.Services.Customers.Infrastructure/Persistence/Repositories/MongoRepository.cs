@@ -13,7 +13,7 @@ public class MongoRepository<T>(IMongoDatabase database, string collectionName) 
 
     public async Task<IReadOnlyList<T>> FindAsync(Expression<Func<T, bool>> predicate) => await Collection.Find(predicate).ToListAsync();
 
-    public async Task<T> GetAsync(Guid id) => await Collection.Find(Builders<T>.Filter.Eq(e => e.Id, id)).SingleOrDefaultAsync();
+    public async Task<T> GetAsync(Guid id) => (await Collection.FindAsync(e => e.Id.Equals(id))).First();
 
     public async Task UpdateAsync(T entity) => await Collection.ReplaceOneAsync(e => e.Id.Equals(entity.Id), entity);
 

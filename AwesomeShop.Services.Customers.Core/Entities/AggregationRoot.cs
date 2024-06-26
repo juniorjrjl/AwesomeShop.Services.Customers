@@ -2,14 +2,18 @@ using AwesomeShop.Services.Customers.Core.Events;
 
 namespace AwesomeShop.Services.Customers.Core.Entities;
 
-public class AggregationRoot : IEntityBase
+public abstract class AggregationRoot : IEntityBase
 {
-    private readonly List<IDomainEvent> _events = [];
+    private List<IDomainEvent> _events = [];
 
     public Guid Id { get; set; }
 
     public IEnumerable<IDomainEvent> Events => _events;
 
-    protected void AddEvent(IDomainEvent @event) => _events.Add(@event);
+    protected void AddEvent(IDomainEvent @event)
+    {
+        _events ??= [];
+        _events.Add(@event);
+    }
 
 }

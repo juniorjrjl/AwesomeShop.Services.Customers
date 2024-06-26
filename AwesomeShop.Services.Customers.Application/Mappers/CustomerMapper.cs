@@ -10,7 +10,7 @@ public class CustomerMapper : ICustomerMapper
     public Customer ToCustomer(AddCustomer request) => 
         Customer.Create(fullName: request.FullName, birthDate: request.BirthDate, email: request.Email);
 
-    public Customer ToCustomer(Customer customer, UpdateCustomer request) => 
+    public Customer ToCustomer(Customer customer, UpdateCustomer request) =>
         customer.Update(request.PhoneNumber, ToAddress(request.Address));
 
     public GetCustomerByIdViewModel ToViewModel(Customer? customer) => 

@@ -17,6 +17,14 @@ namespace AwesomeShop.Services.Customers.Infrastructure;
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddMongo(this IServiceCollection services) {
+            BsonSerializer.RegisterSerializationProvider(new GuidSerializerProvider());
+            BsonSerializer.RegisterSerializationProvider(new DateTimeSerializerProvider());
+            
+            #pragma warning disable CS0618
+            BsonDefaults.GuidRepresentation = GuidRepresentation.Standard;
+            BsonDefaults.GuidRepresentationMode = GuidRepresentationMode.V3;
+            #pragma warning restore CS0618
+
         services.AddSingleton(s => {
             var configuration = s.GetService<IConfiguration>();
             ArgumentNullException.ThrowIfNull(configuration);
@@ -35,9 +43,6 @@ public static class ServiceCollectionExtensions
         });
 
         services.AddTransient(sp => {
-            BsonSerializer.RegisterSerializationProvider(new GuidSerializerProvider());
-            BsonSerializer.RegisterSerializationProvider(new DateTimeSerializerProvider());
-            
             var options = sp.GetService<MongoDBOptions>();
             ArgumentNullException.ThrowIfNull(options);
             var mongoClient = sp.GetService<IMongoClient>();

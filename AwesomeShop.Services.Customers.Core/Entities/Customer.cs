@@ -6,7 +6,7 @@ namespace AwesomeShop.Services.Customers.Core.Entities;
 public class Customer : AggregationRoot
 {
 
-    public Customer(Guid id, string fullName, DateTime birthDate, string email) 
+    public Customer(Guid id, string fullName, DateTime birthDate, string email) : base()
     {
         Id = id;
         FullName = fullName;
