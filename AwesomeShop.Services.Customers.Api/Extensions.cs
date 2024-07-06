@@ -15,8 +15,8 @@ public static class Extensions
         {
             ID = $"customer-service",
             Name = "CustomerServices",
-            Address = "localhost",
-            Port = 5001
+            Address = "customerapi",
+            Port = 5002
         };
 
         logger.LogInformation("Registering with Consul");

@@ -4,10 +4,11 @@ using System.Text.Json.Serialization;
 using Microsoft.OpenApi.Models;
 using AwesomeShop.Services.Customers.Application.Commands.Handlers;
 using AwesomeShop.Services.Customers.Application.Queries;
+using AwesomeShop.Services.Customers.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddConsulConfig(builder.Configuration);
+builder.Services.AddConsulConfig(builder.Configuration);
 builder.Services.AddControllers()
     .AddJsonOptions(opt =>{
         opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -37,7 +38,7 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-//app.UseConsul();
+app.UseConsul();
 
 app.MapControllers();
 

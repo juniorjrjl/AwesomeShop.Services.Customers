@@ -6,7 +6,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       Mongo__ConnectionStrings: mongodb://customer-service:customer-service@customerdb:27017
       Mongo__Database: customer-service
-      Consul__Host: http://localhost:8500
+      Consul__Host: http://servicediscovery:8500
       RabbitMQ__Host: crow-01.rmq.cloudamqp.com
       RabbitMQ__User: cnxoyvms
       RabbitMQ__Password: QlHhmVNnNeGL_s3rx9uAZ4icwcVBKo9I
